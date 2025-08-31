@@ -1,0 +1,3 @@
+.ipynb_checkpoints/*
+.vscode/*
+GoogleNews-vectors-negative300.bin
