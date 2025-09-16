@@ -1,37 +1,51 @@
-# NLP Assignments
+# Hate Speech Detection
 
-This repository contains the work for two NLP assignments. The primary tasks involve text classification and sequence labeling.
+This project explores different NLP techniques for classifying text into "hatespeech", "offensive", or "normal" categories. It compares traditional machine learning models with modern large language models using zero-shot and few-shot prompting.
 
-## Assignment 2: Text Classification
+## Project Structure
 
-`NLP_A2.ipynb` contains the code for a text classification task. The goal is to classify text into different categories. The notebook covers the entire process from data loading and preprocessing to model training and evaluation.
+- `NLP_A2.ipynb`: Jupyter notebook containing the implementation of traditional ML models (e.g., Logistic Regression, SVM) with TF-IDF and Word2Vec embeddings.
+- `NLP_A3.ipynb`: Jupyter notebook for hate speech classification using FLAN-T5 models with zero-shot and few-shot prompting techniques.
+- `NLP_ass_train.tsv`, `NLP_ass_valid.tsv`, `NLP_ass_test.tsv`: Dataset files containing the text and corresponding labels.
+- `GoogleNews-vectors-negative300.bin`: Pre-trained Word2Vec model from Google.
 
-### Model
-A transformer-based model is used for this task. The notebook details the model architecture and training process.
+## Dataset
 
-### Results
-The model's performance is evaluated using metrics such as accuracy, precision, recall, and F1-score. The notebook includes a confusion matrix and a classification report to summarize the results.
+The dataset is provided in tab-separated files (`.tsv`). Each file contains two columns: "text" and "label". The labels are "hatespeech", "offensive", and "normal".
 
-## Assignment 3: Sequence Labeling
+## Models and Methods
 
-`NLP_A3.ipynb` and `A3.ipynb` focus on a sequence labeling task, likely Named Entity Recognition (NER). The objective is to assign a label to each token in a sequence of text.
+### Traditional Models (`NLP_A2.ipynb`)
 
-### Model
-Similar to Assignment 2, a transformer-based model is employed for this sequence labeling task. The notebook provides a detailed explanation of the model and its implementation.
+This notebook focuses on traditional machine learning approaches.
 
-### Results
-The performance of the sequence labeling model is presented in the notebook, including metrics like accuracy and a classification report for each entity type.
+- **Features**: TF-IDF and pre-trained Word2Vec embeddings (`GoogleNews-vectors-negative300.bin`) are used to represent the text data.
+- **Models**: Logistic Regression and Support Vector Machines (SVM) are trained on the extracted features.
 
-## Data
-The dataset for these assignments is provided in the following files:
-- `NLP_ass_train.tsv`
-- `NLP_ass_valid.tsv`
-- `NLP_ass_test.tsv`
+### Large Language Models (`NLP_A3.ipynb`)
+
+This notebook utilizes the FLAN-T5 model for classification.
+
+- **Models**: `google/flan-t5-base` and `google/flan-t5-small` are used.
+- **Techniques**:
+  - **Zero-shot learning**: The model is prompted to classify the text without any prior examples.
+  - **Few-shot learning**: The model is provided with a few examples in the prompt to guide the classification.
+
+## Setup
+
+1.  Clone the repository.
+2.  Install the required Python libraries:
+
+    ```bash
+    pip install pandas torch transformers scikit-learn jupyter gensim
+    ```
+
+3.  Download the pre-trained Word2Vec model (`GoogleNews-vectors-negative300.bin`) if it is not already present.
 
 ## Usage
-To reproduce the results, you can run the Jupyter notebooks. The notebooks are self-contained and include all the necessary code and outputs.
 
-1.  **Assignment 2:** Open and run the cells in `NLP_A2.ipynb`.
-2.  **Assignment 3:** Open and run the cells in `NLP_A3.ipynb` or `A3.ipynb`.
+1.  Launch Jupyter Notebook or Jupyter Lab.
+2.  Open and run the cells in `NLP_A2.ipynb` to train and evaluate the traditional models.
+3.  Open and run the cells in `NLP_A3.ipynb` to perform classification using the FLAN-T5 models.
 
-Make sure you have the required libraries installed. The notebooks use common NLP and deep learning libraries such as PyTorch, Transformers, and scikit-learn.
+The notebooks will load the data, process the text, train the models (where applicable), and print classification reports including accuracy and F1-scores.
